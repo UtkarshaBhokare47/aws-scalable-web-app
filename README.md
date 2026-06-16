@@ -130,7 +130,7 @@ Configure Scaling Policy
 Health Checks Pass
     │
     ▼
-Scalable Web App Ready ✅
+Scalable Web App Ready
 
 
 ## Outcome
