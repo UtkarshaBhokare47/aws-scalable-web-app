@@ -1,0 +1,79 @@
+AWS Scalable Web App Project - Windows Notes
+
+# Connect to EC2 using PEM file
+
+ssh -i "your-key.pem" ubuntu@<PUBLIC-IP>
+
+# Apache Commands (Ubuntu EC2)
+
+sudo apt update -y
+
+sudo apt install apache2 -y
+
+sudo systemctl start apache2
+
+sudo systemctl enable apache2
+
+sudo systemctl status apache2
+
+# Create Web Page
+
+echo "Server 1" | sudo tee /var/www/html/index.html
+
+# Verify Web Page
+
+curl localhost
+
+# Check Port 80
+
+sudo ss -tulpn | grep :80
+
+# Change Page Content
+
+echo "Server 2" | sudo tee /var/www/html/index.html
+
+echo "Server 3" | sudo tee /var/www/html/index.html
+
+# Check HTTP Response
+
+curl -I http://localhost
+
+# Auto Scaling Test
+
+yes > /dev/null
+
+# Stop Test
+
+Ctrl + C
+
+
+AWS Resources Used
+
+EC2 Instance:
+- WebServer-1
+
+Target Group:
+- web-target-group
+
+Application Load Balancer:
+- web-alb
+
+AMI:
+- web-app-ami
+
+Launch Template:
+- web-launch-template
+
+Auto Scaling Group:
+- web-asg
+
+Scaling Configuration:
+- Min Capacity = 2
+- Desired Capacity = 2
+- Max Capacity = 4
+
+Health Check:
+- Protocol = HTTP
+- Path = /
+- Port = 80
+- Success Code = 200
